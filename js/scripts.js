@@ -78,12 +78,11 @@ Game.prototype.gameOver = function () {
     var plays = [];
     for (var i = 0; i < this.board.square.length; i++) {
       if (this.board.square[i].markedBy() === this.player[this.turn]){
-        //console.log();
         plays.push(this.board.square[i].position);
       }
     }
     plays.sort();
-    var result = false
+    var result = false;
     var combinations = combine(plays);
 
       wins.forEach(function (win){
@@ -147,10 +146,11 @@ $(function () {
     //  console.log(newGame.board.square[currentSquare].markedBy());
       if(!newGame.board.square[currentSquare].markedBy()){
         newGame.board.square[currentSquare].getMark(currentPlayer);
+
         $("#"+currentSquare).append(getImage(newGame.turn));
+
         if(currentPlayer.runs >= 3){
-          if (newGame.gameOver()){
-            currentPlayer.score++;
+          if(newGame.gameOver()){
             var playerNum = parseInt(newGame.turn) + 1;
             alert ("Player"+ playerNum +" has Won!");
             //console.log(newGame.Player,newGame.turn);
@@ -162,8 +162,8 @@ $(function () {
           }
         }
         newGame.nextTurn();
-        }
         playCount++;
+        }
       }else{
         newGame.board = new Board;
         newGame.board.init()
